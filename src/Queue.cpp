@@ -3,12 +3,12 @@
 
 
 template <typename T>
-SafeQueue::SafeQueue() : head{nullptr} {
+Queue::Queue() : head{nullptr} {
 
 }
 
 template <typename T>
-void SafeQueue::push(const T& value){
+void Queue::push(const T& value){
 
     std::lock_guard<std::mutex> lock(mutex);
     Node* node = new Node(value);
@@ -24,7 +24,7 @@ void SafeQueue::push(const T& value){
 }
 
 template <typename T>
-T SafeQueue::pop(){
+T Queue::pop(){
 
     std::lock_guard<std::mutex> lock(mutex);
     if (head == nullptr) {
@@ -39,7 +39,7 @@ T SafeQueue::pop(){
 
 template <typename T>
 template <typename T>
-int SafeQueue<T>::size() const {
+int Queue<T>::size() const {
     std::lock_guard<std::mutex> lock(mutex);
     int size = 0;
     Node* current = head;
@@ -51,7 +51,7 @@ int SafeQueue<T>::size() const {
 }
 
 template <typename T>
-bool SafeQueue<T>::empty() const {
+bool Queue<T>::empty() const {
     std::lock_guard<std::mutex> lock(mutex);
     return head == nullptr;
 }

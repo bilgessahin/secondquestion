@@ -4,9 +4,9 @@
 #include <mutex>
 
 template <typename T>
-class SafeQueue {
+class Queue {
 public:
-    SafeQueue();
+    Queue();
 
     void push(const T& val);
     T pop();
